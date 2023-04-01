@@ -110,7 +110,7 @@ BlendTree:
       type: 3}
     m_Threshold: 18
     m_Position: {x: -10, y: 0}
-    m_TimeScale: 3
+    m_TimeScale: 2.3
     m_CycleOffset: 0
     m_DirectBlendParameter: Speed
     m_Mirror: 0
