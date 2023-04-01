@@ -1,5 +1,6 @@
 ﻿using Tics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game {
     public class ShooterBurst : Shooter {
@@ -19,7 +20,15 @@ namespace Game {
         private readonly TicMan _tm = TicMan.Create();
         
         public override Vector3 Spread => new (Random.Range(-_spread, _spread), 0, 0);
-        
+
+        private void OnDestroy() {
+            StopShoot();
+        }
+
+        private void OnDisable() {
+            StopShoot();
+        }
+
         private void Update() {
             if (Input.GetMouseButtonDown(0)) {
                 StartShoot();
