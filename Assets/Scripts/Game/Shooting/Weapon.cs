@@ -19,7 +19,7 @@ namespace Game {
                 Shoot();
             }
 
-            if (Input.GetKey(KeyCode.W)) {
+            /*if (Input.GetKey(KeyCode.W)) {
                 transform.Rotate(-1, 0, 0);
                 return;
             }
@@ -37,7 +37,7 @@ namespace Game {
             if (Input.GetKey(KeyCode.D)) {
                 transform.Rotate(0, 1, 0);
                 return;
-            }
+            }*/
         }
 
         private void Shoot() {
