@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1174473686448742428}
   - component: {fileID: 968541145087152241}
   - component: {fileID: 4895843049959890418}
+  - component: {fileID: 5193577720714878230}
   m_Layer: 0
   m_Name: Fence_sample
   m_TagString: Untagged
@@ -345,3 +346,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!54 &5193577720714878230
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3005070745638979455}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
