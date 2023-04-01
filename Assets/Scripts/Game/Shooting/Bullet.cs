@@ -4,8 +4,11 @@ namespace Game {
     public class Bullet : MonoBehaviour {
         [SerializeField] private Collider _collider;
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private float _lifeTime;
-        [SerializeField] private float _damage;
+        
+        [Tooltip("Через сколько секунд умрет пуля, если никуда не попадет")]
+        [SerializeField] private float _lifeTime = 5;
+        
+        private float _damage;
 
         public Collider Collider => _collider;
         
@@ -15,10 +18,11 @@ namespace Game {
 
         private void OnCollisionEnter(Collision collision) {
             var target = collision.gameObject?.GetComponent<Health>();
-            if (target) {
-                target.TakeDamage(_damage);
+            if (!target) {
+                return;
             }
-
+            
+            target.TakeDamage(_damage);
             Destroy(gameObject);
         }
 

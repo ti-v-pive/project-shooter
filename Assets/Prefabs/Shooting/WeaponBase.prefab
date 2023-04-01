@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4497441820020585209}
   - component: {fileID: 7149713030489896974}
+  - component: {fileID: -4362912953099665299}
+  - component: {fileID: -6313406591921875262}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: WeaponBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,12 +49,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb30d1b505942a1af015ded015b1da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 0}
+  _damage: 1
   _bulletPrefab: {fileID: 429081182357596975, guid: 52d3baf8c47404448a6a504c07a2f60e,
     type: 3}
   _bulletSpawner: {fileID: 4429285516227433077}
-  _shootForce: 14
-  _shootSpread: 0.02
+  _shooter: {fileID: -6313406591921875262}
+--- !u!114 &-4362912953099665299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590466440943273903}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e562d090d04c23a232c022fdb525ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _force: 10
+  _spread: 0
+--- !u!114 &-6313406591921875262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590466440943273903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e6df7ae9a477892ad969229256c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _force: 10
+  _masShootCount: -1
+  _everyShootDelay: 0.1
+  _spreadMin: 0
+  _spreadMax: 0.1
+  _spreadDuration: 1
+  _spreadEase: 15
 --- !u!1 &6373173282628413205
 GameObject:
   m_ObjectHideFlags: 0

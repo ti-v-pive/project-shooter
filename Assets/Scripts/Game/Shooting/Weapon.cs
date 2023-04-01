@@ -1,63 +1,38 @@
 ﻿using UnityEngine;
 using Utils;
-using Random = UnityEngine.Random;
 
 namespace Game {
     public class ShootSignal : Signal {}
 
     public class Weapon : MonoBehaviour {
-        [SerializeField] private Collider _collider;
-        
+        [SerializeField] private float _damage;
+
         [Header("Bullet")]
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private Transform _bulletSpawner;
-
-        [Header("Shoot")]
-        [SerializeField] private float _shootForce;
-        [SerializeField] private float _shootSpread;
         
+        [Header("Shoot")]
+        [SerializeField] private Shooter _shooter;
+        
+        private Transform _transform;
+
         public readonly ShootSignal ShootSignal = new();
-
-        // temp
-        private void Update() {
-            if (Input.GetMouseButtonDown(0)) {
-                Shoot();
-            }
-
-            /*if (Input.GetKey(KeyCode.W)) {
-                transform.Rotate(-1, 0, 0);
-                return;
-            }
-            
-            if (Input.GetKey(KeyCode.S)) {
-                transform.Rotate(1, 0, 0);
-                return;
-            }
-            
-            if (Input.GetKey(KeyCode.A)) {
-                transform.Rotate(0, -1, 0);
-                return;
-            }
-            
-            if (Input.GetKey(KeyCode.D)) {
-                transform.Rotate(0, 1, 0);
-                return;
-            }*/
+        
+        private void Awake() {
+            _shooter.OnShootListeners += Shoot;
         }
 
         private void Shoot() {
-            var direction = transform.forward + GetSpread();
+            _transform ??= transform;
             
-            var bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, transform.rotation);
-            bullet.SetForce(direction, _shootForce);
-
-            if (_collider) {
-                Physics.IgnoreCollision(bullet.Collider, _collider);
-            }
-
+            var direction = _transform.forward + _shooter.Spread;
+            
+            var bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, _transform.rotation);
+            bullet.SetForce(direction, _shooter.Force);
+            bullet.SetDamage(_damage);
+            
             ShootSignal.Fire();
         }
 
-        private Vector3 GetSpread() => new (Random.Range(-_shootSpread, _shootSpread), 0, 0);
     }
 }
