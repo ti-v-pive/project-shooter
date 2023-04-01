@@ -66,11 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1e05220271fc584468072f07efad3b4c, type: 2}
+      objectReference: {fileID: 2100000, guid: a755f2cd004bf6e4ab5cadb327c41905, type: 2}
     - target: {fileID: 3086257879319991615, guid: 2b5eaa4c91f842a4ebc3381f6838a63c,
         type: 3}
       propertyPath: m_Name
-      value: Floor_sample Variant
+      value: Floor_wood_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b5eaa4c91f842a4ebc3381f6838a63c, type: 3}
