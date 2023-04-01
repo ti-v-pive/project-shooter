@@ -17,7 +17,7 @@ namespace Game {
         }
 
         private void OnCollisionEnter(Collision collision) {
-            var target = collision.gameObject?.GetComponent<Health>();
+            var target = collision.gameObject.GetComponent<Health>();
             if (!target) {
                 return;
             }

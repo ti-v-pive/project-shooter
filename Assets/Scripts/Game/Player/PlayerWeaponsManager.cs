@@ -45,5 +45,9 @@ namespace Game {
             MessageBroker.Default.Publish(new PlayerWeaponSelectedSignal());
         }
 
+        public void AddWeapon(Weapon weapon) {
+            _weapons.Add(weapon);
+        }
+        
     }
 }

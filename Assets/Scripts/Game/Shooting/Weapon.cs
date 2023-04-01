@@ -18,7 +18,8 @@ namespace Game {
         
         [Header("Shoot")]
         [SerializeField] private Shooter _shooter;
-        
+
+        private bool IsPlayer => OwnerType == CreatureType.Player;
         private Transform _transform;
         
         private void Awake() {
@@ -29,12 +30,14 @@ namespace Game {
             _transform ??= transform;
             
             var direction = _transform.forward + _shooter.Spread;
+            var damage = IsPlayer && Main.Instance.Modifications.IsDoubleDamage ? 2.0f * _damage : _damage;
             
             var bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, _transform.rotation);
             bullet.SetForce(direction, _shooter.Force);
-            bullet.SetDamage(_damage);
-            
+            bullet.SetDamage(damage);
+
             MessageBroker.Default.Publish(new ShootSignal { OwnerType = OwnerType });
         }
+
     }
 }
