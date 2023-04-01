@@ -6,13 +6,15 @@ namespace Game.Animation {
         [SerializeField] private Animator animator;
         [SerializeField] private string horizontalVelocityParameter = "HorizontalVelocity";
         [SerializeField] private string verticalVelocityParameter = "VerticalVelocity";
-        [SerializeField] private float velocityMultiplier = 1.0f;
+
+        private Transform _transform;
+        private Transform Transform => _transform ??= rb.transform;
 
         private void Update() {
-            Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
+            Vector3 localVelocity = Transform.InverseTransformDirection(rb.velocity);
 
-            float horizontalVelocity = localVelocity.x * velocityMultiplier;
-            float verticalVelocity = localVelocity.z * velocityMultiplier;
+            float horizontalVelocity = localVelocity.x;
+            float verticalVelocity = localVelocity.z;
 
             animator.SetFloat(horizontalVelocityParameter, horizontalVelocity);
             animator.SetFloat(verticalVelocityParameter, verticalVelocity);
