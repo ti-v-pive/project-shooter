@@ -5,6 +5,7 @@ using UniRx;
 
 namespace Game.Animation {
     public class CameraShakeOnShoot : MonoBehaviour {
+        [SerializeField] private Weapon weapon;
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
         [SerializeField] private float shakeDuration = 0.3f;
         [SerializeField] private float shakeAmplitude = 1.2f;
@@ -14,9 +15,12 @@ namespace Game.Animation {
 
         private void Awake() {
             _noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            weapon.ShootSignal
+                .Subscribe(x => OnShoot())
+                .AddTo(this);
         }
 
-        private void Update() {
+        private void OnShoot() {
             if (!Input.GetMouseButtonDown(0)) {
                 return;
             }

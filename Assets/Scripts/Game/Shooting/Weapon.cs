@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace Game {
+    public class ShootSignal : Signal {}
+
     public class Weapon : MonoBehaviour {
         [SerializeField] private Collider _collider;
         
@@ -12,6 +15,8 @@ namespace Game {
         [Header("Shoot")]
         [SerializeField] private float _shootForce;
         [SerializeField] private float _shootSpread;
+        
+        public readonly ShootSignal ShootSignal = new();
 
         // temp
         private void Update() {
@@ -49,6 +54,8 @@ namespace Game {
             if (_collider) {
                 Physics.IgnoreCollision(bullet.Collider, _collider);
             }
+
+            ShootSignal.Fire();
         }
 
         private Vector3 GetSpread() => new (Random.Range(-_shootSpread, _shootSpread), 0, 0);

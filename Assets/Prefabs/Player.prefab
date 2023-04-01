@@ -134,10 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6e9ec2ca2f4bdeaf2633affbaca38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 7204678414646989571}
   virtualCamera: {fileID: 722473058026683009}
-  shakeDuration: 0.3
-  shakeAmplitude: 1.2
-  shakeFrequency: 2
+  shakeDuration: 0.1
+  shakeAmplitude: 1
+  shakeFrequency: 4
 --- !u!1 &722473058345088865
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +660,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 55392048490064653}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7204678414646989571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8,
+    type: 3}
+  m_PrefabInstance: {fileID: 55392048490064653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb30d1b505942a1af015ded015b1da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5687467452495432008
 PrefabInstance:
   m_ObjectHideFlags: 0
