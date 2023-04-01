@@ -9,8 +9,7 @@ namespace Game.Movement {
             _transform.LookAt(PlayerAimPosition.Instance.transform);
             
             var rotation = _transform.rotation;
-            rotation.z = 0;
-            _transform.rotation = rotation;
+            _transform.rotation = new Quaternion(0, rotation.y, 0, rotation.w);
         }
     }
 }
