@@ -130,4 +130,4 @@ MonoBehaviour:
   _collider: {fileID: 429081182357596961}
   _rigidbody: {fileID: 429081182357596960}
   _lifeTime: 5
-  _damage: 0
+  _damage: 1
