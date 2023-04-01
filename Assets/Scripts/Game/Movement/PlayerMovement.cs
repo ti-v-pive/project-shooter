@@ -3,13 +3,9 @@
 namespace Game.Movement {
     public class PlayerMovement : MonoBehaviour {
         public float moveSpeed = 5.0f;
-
-        private Rigidbody _rb;
+        public Rigidbody rb;
+        
         private Vector3 _movement;
-
-        private void Start() {
-            _rb = GetComponent<Rigidbody>();
-        }
 
         private void Update() {
             float moveX = Input.GetAxisRaw("Horizontal");
@@ -19,7 +15,7 @@ namespace Game.Movement {
         }
 
         private void FixedUpdate() {
-            _rb.velocity = _movement * moveSpeed;
+            rb.velocity = _movement * moveSpeed;
         }
     }
 }
