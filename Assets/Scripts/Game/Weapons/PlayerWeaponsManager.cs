@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Utils;
 
 namespace Game {
-    public class PlayerSelectWeaponSignal : Signal {}
-    
+    public class PlayerWeaponSelectedSignal {}
+
     public class PlayerWeaponsManager : MonoBehaviourSingleton<PlayerWeaponsManager> {
         [SerializeField] private PlayerHand _rightHand;
         [SerializeField] private List<Weapon> _weapons; // temp
-
-        public readonly PlayerSelectWeaponSignal PlayerSelectWeaponSignal = new ();
 
         private void Start() {
             TrySelectWeapon(0);
@@ -20,33 +19,31 @@ namespace Game {
                 TrySelectWeapon(0);
                 return;
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Alpha2)) {
                 TrySelectWeapon(1);
                 return;
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Alpha3)) {
                 TrySelectWeapon(2);
                 return;
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Alpha4)) {
                 TrySelectWeapon(3);
-                return;
             }
         }
 
         private void TrySelectWeapon(int index) {
-            var weapon = index < _weapons.Count  ? _weapons[index] : null;
+            var weapon = index < _weapons.Count ? _weapons[index] : null;
             if (!weapon) {
                 return;
             }
-            
+
             _rightHand.SetWeapon(weapon);
-            PlayerSelectWeaponSignal.Fire();
+            MessageBroker.Default.Publish(new PlayerWeaponSelectedSignal());
         }
-        
-        
+
     }
 }

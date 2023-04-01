@@ -17,6 +17,7 @@ namespace Game {
             }
             
             Weapon = Instantiate(weaponPrefab, _container);
+            Weapon.OwnerType = CreatureType.Player;
         }
     }
 }

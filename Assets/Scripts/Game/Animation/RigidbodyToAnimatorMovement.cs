@@ -13,8 +13,8 @@ namespace Game.Animation {
         private void Update() {
             Vector3 localVelocity = Transform.InverseTransformDirection(rb.velocity);
 
-            float horizontalVelocity = localVelocity.x;
-            float verticalVelocity = localVelocity.z;
+            float horizontalVelocity = Mathf.Clamp(localVelocity.x, -1.0f, 1.0f);
+            float verticalVelocity = Mathf.Clamp(localVelocity.z, -1.0f, 1.0f);
 
             animator.SetFloat(horizontalVelocityParameter, horizontalVelocity);
             animator.SetFloat(verticalVelocityParameter, verticalVelocity);

@@ -1,10 +1,15 @@
-﻿using UnityEngine;
-using Utils;
+﻿using UniRx;
+using UnityEngine;
 
 namespace Game {
-    public class ShootSignal : Signal {}
+    public class ShootSignal {
+        public CreatureType OwnerType;
+    }
 
     public class Weapon : MonoBehaviour {
+
+        public CreatureType OwnerType = CreatureType.Bot;
+        
         [SerializeField] private float _damage;
 
         [Header("Bullet")]
@@ -15,8 +20,6 @@ namespace Game {
         [SerializeField] private Shooter _shooter;
         
         private Transform _transform;
-
-        public readonly ShootSignal ShootSignal = new();
         
         private void Awake() {
             _shooter.OnShootListeners += Shoot;
@@ -31,8 +34,7 @@ namespace Game {
             bullet.SetForce(direction, _shooter.Force);
             bullet.SetDamage(_damage);
             
-            ShootSignal.Fire();
+            MessageBroker.Default.Publish(new ShootSignal { OwnerType = OwnerType });
         }
-
     }
 }
