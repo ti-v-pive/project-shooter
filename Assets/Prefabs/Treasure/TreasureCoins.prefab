@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 1
-  _value: 100
+  _value: 10
 --- !u!4 &3538599903472452604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2649382669947378942, guid: 3d695b8200fcd7243a46a00a650f63f0, type: 3}
