@@ -36,7 +36,7 @@ namespace Game.UI.Leaderboard {
             ShowInternal();
             var scores = await LeaderboardManager.GetTopScores();
             for (int i = 0; i < _players.Count; i++) {
-                var entry = scores.FirstOrDefault(e => e.Position == i + 1);
+                var entry = scores.FirstOrDefault(e => e.Position == i);
                 var player = _players[i];
                 player.Init(entry);
             }
