@@ -5,7 +5,7 @@ namespace Game {
         [SerializeField] private Weapon _weapon;
         
         public override void Accept() {
-            Main.Instance.Player.Weapons.AddWeapon(_weapon);
+            Player.Instance.Weapons.AddWeapon(_weapon);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Game {
         [SerializeField] private float _health;
         
         public override void Accept() {
-            Main.Instance.Player.Health.TakeHeal(_health);
+            Player.Instance.Health.TakeHeal(_health);
         }
     }
 }

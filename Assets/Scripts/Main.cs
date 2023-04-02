@@ -5,9 +5,6 @@ using UnityEngine;
 using Utils;
 
 public class Main : MonoBehaviourSingleton<Main> {
-    [SerializeField] private Player _player;
-    
-    public Player Player => _player;
     public readonly GameItemsManager Inventory = new ();
     public readonly ModificationsManager Modifications = new ();
     

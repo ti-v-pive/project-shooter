@@ -7,5 +7,15 @@ namespace Game {
         public void Die() {
             Destroy(gameObject);
         }
+
+        private void OnTriggerEnter(Collider other) {
+            var target = other.GetComponent<TreasureCollector>();
+            if (!target) {
+                return;
+            }
+            
+            Accept();
+            Die();
+        }
     }
 }
