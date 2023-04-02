@@ -258,6 +258,7 @@ MonoBehaviour:
   _health: 2
   _hitEffect: {fileID: 7074842871066010876, guid: f2f25bb624b8a4b5baa4d8b56ac80e92, type: 3}
   _destroyEffect: {fileID: 8725615908097194839, guid: 66ca463476ce44ce2b7c909f5e6e789b, type: 3}
+  _hitSoundEffect: {fileID: 2933765701288550504, guid: cea794e7d5e5df44aa3b93a91c22e4f4, type: 3}
 --- !u!1001 &4223355712646767557
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ namespace Game {
         [SerializeField] private float _health;
         [SerializeField] private Effect _hitEffect;
         [SerializeField] private Effect _destroyEffect;
+        [SerializeField] private SoundEffect _hitSoundEffect;
 
         public bool IsDead { get; private set; }
 
@@ -16,6 +17,8 @@ namespace Game {
             }
             
             _health -= damage;
+            
+            _hitSoundEffect?.PlayNew();
 
             var point = collision.contacts[0].point;
             Vector3 collisionDirection = collision.contacts[0].normal;

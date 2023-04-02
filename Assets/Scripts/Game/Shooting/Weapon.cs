@@ -29,6 +29,8 @@ namespace Game {
         [SerializeField] private float _spreadStep = 0.01f;
         [Header("Время сброса spread после последнего выстрела")]
         [SerializeField] private float _spreadCooldown = 1f;
+        
+        [SerializeField] private SoundEffect _shootSoundEffect;
 
         private float _spread;
         private float _lastShootTime;
@@ -73,6 +75,10 @@ namespace Game {
             
             if (_spread < _spreadMax) {
                 _spread = Math.Min(_spread + _spreadStep, _spreadMax);
+            }
+
+            if (IsPlayer) {
+                _shootSoundEffect.PlayNew();
             }
 
             MessageBroker.Default.Publish(new ShootSignal { OwnerType = _ownerType });

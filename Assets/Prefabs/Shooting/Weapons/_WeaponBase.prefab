@@ -53,12 +53,12 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 429081182357596975, guid: 52d3baf8c47404448a6a504c07a2f60e, type: 3}
   _bulletSpawner: {fileID: 4429285516227433077}
   _bulletForce: 10
-  _bulletsCount: -1
   _shootCooldown: 0.1
   _spreadMin: 0
   _spreadMax: 0.1
   _spreadStep: 0.01
   _spreadCooldown: 1
+  _shootSoundEffect: {fileID: 2933765701288550504, guid: 3cf590519df5aca4ca256ef4623c5512, type: 3}
 --- !u!1 &6373173282628413205
 GameObject:
   m_ObjectHideFlags: 0
