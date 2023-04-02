@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2617920231471041200}
+  - component: {fileID: 1752938954876638541}
+  - component: {fileID: 4793566556808396947}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -23,15 +25,53 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436200521082694675}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8713522336985350887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1752938954876638541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436200521082694675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ecd1b94cf84704bcb2439a39418821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closestWaypointsAmount: 4
+  chaseDistance: 15
+  keepDistance: 5
+  fieldOfViewAngle: 110
+--- !u!195 &4793566556808396947
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436200521082694675}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.88
+  m_BaseOffset: 0.56
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8482590152990397473
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8482590152990397473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.24, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -132,7 +172,7 @@ CapsuleCollider:
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!54 &6427139252133363263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -145,9 +185,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &7465960304739276885
 MonoBehaviour:
@@ -221,7 +261,6 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 4ff04841b144aac479b55d50f1e55cc0, type: 3}
 --- !u!4 &4220933937992375687 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4392177136336450, guid: 4ff04841b144aac479b55d50f1e55cc0,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4392177136336450, guid: 4ff04841b144aac479b55d50f1e55cc0, type: 3}
   m_PrefabInstance: {fileID: 4223355712646767557}
   m_PrefabAsset: {fileID: 0}
