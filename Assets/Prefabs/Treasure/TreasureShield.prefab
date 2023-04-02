@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4460733255589190551}
-  - component: {fileID: 2207885249469914657}
   - component: {fileID: 4591253933367917474}
   - component: {fileID: 9079128543444568390}
   m_Layer: 7
@@ -34,14 +33,6 @@ Transform:
   m_Father: {fileID: 3752550630351059558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2207885249469914657
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315653266678230676}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &4591253933367917474
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97,6 +88,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &852953994711605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3752550630351059558}
+    m_Modifications:
+    - target: {fileID: 2789116231572571774, guid: ec8b2cedf496041919232607cab5361d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789116231572571774, guid: ec8b2cedf496041919232607cab5361d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -270
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789116231572571774, guid: ec8b2cedf496041919232607cab5361d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789116231572571774, guid: ec8b2cedf496041919232607cab5361d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3314436862144715972, guid: ec8b2cedf496041919232607cab5361d, type: 3}
+      propertyPath: m_Name
+      value: shield
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec8b2cedf496041919232607cab5361d, type: 3}
 --- !u!1001 &1213653488122472088
 PrefabInstance:
   m_ObjectHideFlags: 0
