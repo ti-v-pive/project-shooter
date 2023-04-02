@@ -15,7 +15,7 @@ namespace Game {
             SetEndTime(type, endTime);
         }
 
-        public bool IsInvulnerable => IsActive(ModificationType.Invulnerable);
+        public bool IsShield => IsActive(ModificationType.Shield);
         public bool IsDoubleDamage => IsActive(ModificationType.DoubleDamage);
         
         private bool IsActive(ModificationType type) => Time.time < GetEndTime(type);

@@ -1,6 +1,6 @@
 ﻿namespace Game {
     public enum ModificationType {
-        Invulnerable,
+        Shield,
         DoubleDamage
     }
 }
