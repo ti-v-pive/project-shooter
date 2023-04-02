@@ -50,6 +50,7 @@ public class Main : MonoBehaviourSingleton<Main> {
 
     public void Win() {
         Debug.LogError("WIN");
+        CalcExp();
         CompleteGameWithRestart();
     }
 
@@ -69,4 +70,9 @@ public class Main : MonoBehaviourSingleton<Main> {
         OnApplicationPause(state == PauseState.Paused);
     }
 #endif
+
+    private void CalcExp() {
+        var exp = (int)CountdownTimer.Instance.timeRemaining + 10 * Inventory.Coins.Count;
+        Inventory.Exp.SetCount(exp);
+    }
 }
