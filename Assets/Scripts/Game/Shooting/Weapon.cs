@@ -20,9 +20,7 @@ namespace Game {
         [SerializeField] private Transform _bulletSpawner;
         [Header("Скорость вылета пули")]
         [SerializeField] private float _bulletForce = 10;
-        [Header("Количество пуль (-1 - бесконечно)")]
-        [SerializeField] private int _bulletsCount = -1;
-        
+
         [Header("Периодичность выстрелов")]
         [SerializeField] private float _shootCooldown = 0.1f;
         [Header("Разброс (для Queue)")]
@@ -42,8 +40,7 @@ namespace Game {
         public bool IsAutomatic => _shootType == WeaponShootType.Queue;
 
         public WeaponType Type => _type;
-        public int BulletsCount => _bulletsCount;
-        
+
         private void Awake() {
             _spread = _spreadMin;
         }
@@ -63,8 +60,7 @@ namespace Game {
 
         private void Shoot() {
             _lastShootTime = Time.time;
-            _bulletsCount--;
-            
+
             _transform ??= transform;
             
             var direction = _transform.forward + new Vector3 (Random.Range(-_spread, _spread), 0, 0);
@@ -88,15 +84,6 @@ namespace Game {
 
         public void Ignore(Transform parent) {
             _collidersToIgnore = parent.GetComponentsInChildren<Collider>();
-        }
-
-        public void AddBulletsCount(int count) {
-            if (count < 0) {
-                _bulletsCount = count;
-                return;
-            }
-
-            _bulletsCount += count;
         }
 
     }

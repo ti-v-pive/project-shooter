@@ -18,7 +18,7 @@ namespace Game {
             TrySelectWeapon(0);
         }
 
-        private void Update() {
+       /* private void Update() {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 TrySelectWeapon(0);
                 return;
@@ -37,7 +37,7 @@ namespace Game {
             if (Input.GetKeyDown(KeyCode.Alpha4)) {
                 TrySelectWeapon(3);
             }
-        }
+        }*/
 
         private void TrySelectWeapon(int index) {
             var weapon = index < _weapons.Count ? _weapons[index] : null;
@@ -59,13 +59,8 @@ namespace Game {
         }
 
         public void AddWeapon(Weapon weapon) {
-            GetByType(weapon.Type)?.AddBulletsCount(weapon.BulletsCount);
+            Select(weapon);
         }
-
-        public void AddBullets(WeaponType type, int count) {
-            GetByType(type)?.AddBulletsCount(count);
-        }
-        
 
     }
 }
