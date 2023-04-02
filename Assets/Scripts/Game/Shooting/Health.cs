@@ -1,33 +1,33 @@
-﻿using System;
-using Game.AI;
 using UniRx;
-using UnityEditor.AI;
 using UnityEngine;
 
 namespace Game {
     public class Health : MonoBehaviour {
         [SerializeField] private Transform _objectToDestroy;
         [SerializeField] private float _health;
+        [SerializeField] private Effect _hitEffect;
+        [SerializeField] private Effect _destroyEffect;
 
         public bool IsDead { get; private set; }
-        public event Action OnChangeListeners;
 
-        public void TakeHeal(float heal) => TryChangeHealth(heal);
-        public virtual void TakeDamage(float damage) => TryChangeHealth(-damage);
-
-        private void TryChangeHealth(float addition) {
+        public virtual void TakeDamage(float damage, Collision collision) {
             if (IsDead) {
                 return;
             }
-
-            _health += addition;
-            OnChangeListeners?.Invoke();
             
+            _health -= damage;
+
+            var point = collision.contacts[0].point;
+            Vector3 collisionDirection = collision.contacts[0].normal;
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, collisionDirection);
+
             if (_health > 0) {
+                _hitEffect?.PlayNew(point, rotation);
                 return;
             }
             
             Die();
+            _destroyEffect?.PlayNew(point, rotation);
         }
 
         protected virtual void Die() {

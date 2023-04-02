@@ -21,7 +21,7 @@ namespace Game {
                 return;
             }
             
-            target.TakeDamage(_damage);
+            target.TakeDamage(_damage, collision);
             Destroy(gameObject);
         }
 

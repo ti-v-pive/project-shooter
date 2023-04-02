@@ -252,17 +252,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 171
   m_IsSelectable: 1
-  m_SelectedFaces: 00000000
-  m_SelectedEdges:
-  - a: 0
-    b: 1
-  - a: 2
-    b: 0
-  - a: 1
-    b: 3
-  - a: 3
-    b: 2
-  m_SelectedVertices: 00000000010000000200000003000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &5197538537156828460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0a63e4d4324324beaa125214845d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectToDestroy: {fileID: 0}
   _health: 10
+  _hitEffect: {fileID: -7256544167834955707, guid: 988c291d085b8406a918fff23fcf5670, type: 3}
+  _destroyEffect: {fileID: 8725615908097194839, guid: d774f764c3d7848b7ac4c8d005d54608, type: 3}
 --- !u!54 &-1113580095892481387
 Rigidbody:
   m_ObjectHideFlags: 0
