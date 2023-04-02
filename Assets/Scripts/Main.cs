@@ -56,7 +56,9 @@ public class Main : MonoBehaviourSingleton<Main> {
 
     private async void CompleteGameWithRestart() {
         Time.timeScale = 0;
-        await UsernameManager.TryGetUsername();
+        await UserManager.TryGetUsername();
+        await LeaderboardManager.AddScore(Inventory.Coins.Count);
+        await LeaderboardWindow.Instance.Show();
         Restart();
         Time.timeScale = 1;
     }

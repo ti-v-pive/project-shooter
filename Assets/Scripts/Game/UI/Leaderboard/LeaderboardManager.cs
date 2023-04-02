@@ -9,7 +9,7 @@ namespace Game.UI.Leaderboard {
     public class LeaderboardManager {
         private const string PLAY_FAB_STATISTIC_NAME = "HighScore";
 
-        public static async void AddScore(int score) {
+        public static async Task AddScore(int score) {
             var result = await PlayFabLogin.TryLogin();
             if (!result) {
                 return;
@@ -43,7 +43,7 @@ namespace Game.UI.Leaderboard {
                 .ToTask();
         }
 
-        public static async Task<List<PlayerLeaderboardEntry>> GetTopScores(int count) {
+        public static async Task<List<PlayerLeaderboardEntry>> GetTopScores() {
             var loginResult = await PlayFabLogin.TryLogin();
             if (!loginResult) {
                 return null;
@@ -52,7 +52,7 @@ namespace Game.UI.Leaderboard {
             var request = new GetLeaderboardRequest {
                 StatisticName = PLAY_FAB_STATISTIC_NAME,
                 StartPosition = 0,
-                MaxResultsCount = count
+                MaxResultsCount = 100
             };
             
             var resultType = CommandResultType.Process;

@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +15,8 @@ namespace Game.UI.Leaderboard {
             Reject
         }
         
+        [SerializeField] private List<LeaderPlayer> _players;
+        [SerializeField] private LeaderPlayer _myStat;
         [SerializeField] private Button _buttonClose;
 
         private Response _response;
@@ -30,6 +34,19 @@ namespace Game.UI.Leaderboard {
         public async Task Show() {
             _response = Response.None;
             ShowInternal();
+            var scores = await LeaderboardManager.GetTopScores();
+            for (int i = 0; i < _players.Count; i++) {
+                var entry = scores.FirstOrDefault(e => e.Position == i + 1);
+                var player = _players[i];
+                player.Init(entry);
+            }
+            var myStat = scores.FirstOrDefault(s => s.PlayFabId == PlayFabLogin.LoginResult.PlayFabId);
+            if (myStat != null) {
+                _myStat.Init(myStat);
+            } else {
+                var nickname = await UserManager.TryGetUsername();
+                _myStat.Init(nickname, Main.Instance.Inventory.Coins.Count);
+            }
             await WaitForButton().ToObservable();
             HideInternal();
         }
