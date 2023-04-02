@@ -79,8 +79,7 @@ BlendTree:
   m_Name: WalkingBlendTree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: efe528e2d0816664c80b430473dfea5d,
-      type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: efe528e2d0816664c80b430473dfea5d, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -88,38 +87,34 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 121c564260e6cff41b0f28123f3bcebd,
-      type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: 121c564260e6cff41b0f28123f3bcebd, type: 3}
     m_Threshold: 6
-    m_Position: {x: 0, y: 10}
-    m_TimeScale: 1
+    m_Position: {x: 0, y: 1}
+    m_TimeScale: 1.4
     m_CycleOffset: 0
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 0cdbe1829be86ab4dae15a9aaeb8de85,
-      type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: 0cdbe1829be86ab4dae15a9aaeb8de85, type: 3}
     m_Threshold: 12
-    m_Position: {x: 0, y: -10}
-    m_TimeScale: -1
+    m_Position: {x: 0, y: -1}
+    m_TimeScale: 1.4
     m_CycleOffset: 0
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: bbd2260b4af4df94fbeec100e89534da,
-      type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: bbd2260b4af4df94fbeec100e89534da, type: 3}
     m_Threshold: 18
-    m_Position: {x: -10, y: 0}
-    m_TimeScale: 2.3
+    m_Position: {x: -1, y: 0}
+    m_TimeScale: 2.7
     m_CycleOffset: 0
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: ffa700728cc771a40a0100998752c035,
-      type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: bbd2260b4af4df94fbeec100e89534da, type: 3}
     m_Threshold: 24
-    m_Position: {x: 10, y: 0}
-    m_TimeScale: 3
+    m_Position: {x: 1, y: 0}
+    m_TimeScale: -2.7
     m_CycleOffset: 0
     m_DirectBlendParameter: Speed
     m_Mirror: 0
