@@ -131,7 +131,7 @@ Material:
     - _EdgeCut: {r: 0, g: 0, b: 0.61, a: 0.01}
     - _EdgeCutOffset: {r: 0, g: 0, b: -0.8, a: -0.03}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MiddleColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MiddleColor: {r: 1, g: 0.7037569, b: 0.3537736, a: 1}
     - _ScrollSkew: {r: 0, g: 0.5, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TilingOffset: {r: 1, g: 0.1, b: 0, a: 0}
