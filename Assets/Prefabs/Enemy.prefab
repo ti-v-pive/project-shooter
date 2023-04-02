@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2617920231471041200}
   - component: {fileID: 1752938954876638541}
   - component: {fileID: 4793566556808396947}
-  - component: {fileID: 6858194036599109528}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -76,23 +75,6 @@ NavMeshAgent:
   m_BaseOffset: 0.56
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6858194036599109528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436200521082694675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd7fa815c22456ba003da715d2c9123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  navMeshAgent: {fileID: 4793566556808396947}
-  animator: {fileID: 4309371573614921857}
-  horizontalVelocityParameter: HorizontalVelocity
-  verticalVelocityParameter: VerticalVelocity
 --- !u!1 &8078268708878357862
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,8 +238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 2617920231471041200}
   _health: 2
-  _hitEffect: {fileID: 0}
-  _destroyEffect: {fileID: 0}
+  _hitEffect: {fileID: 7074842871066010876, guid: f2f25bb624b8a4b5baa4d8b56ac80e92, type: 3}
+  _destroyEffect: {fileID: 8725615908097194839, guid: 66ca463476ce44ce2b7c909f5e6e789b, type: 3}
 --- !u!1001 &4223355712646767557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,11 +300,6 @@ PrefabInstance:
 --- !u!4 &4220933937992375687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4392177136336450, guid: 4ff04841b144aac479b55d50f1e55cc0, type: 3}
-  m_PrefabInstance: {fileID: 4223355712646767557}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &4309371573614921857 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95043132887313220, guid: 4ff04841b144aac479b55d50f1e55cc0, type: 3}
   m_PrefabInstance: {fileID: 4223355712646767557}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5716045809690052292
