@@ -1,4 +1,5 @@
 using Game;
+using Game.UI.Leaderboard;
 using Tics;
 using UnityEditor;
 using UnityEngine;
@@ -46,12 +47,19 @@ public class Main : MonoBehaviourSingleton<Main> {
 
     public void Lose() {
         Debug.LogError("LOSE");
-        Restart();
+        CompleteGameWithRestart();
     }
 
     public void Win() {
         Debug.LogError("WIN");
+        CompleteGameWithRestart();
+    }
+
+    private async void CompleteGameWithRestart() {
+        Time.timeScale = 0;
+        await UsernameManager.TryGetUsername();
         Restart();
+        Time.timeScale = 1;
     }
 
     private void Restart() {

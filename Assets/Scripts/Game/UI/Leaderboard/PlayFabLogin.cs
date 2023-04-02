@@ -6,35 +6,38 @@ using UnityEngine;
 
 namespace Game.UI.Leaderboard {
     public static class PlayFabLogin {
-        
-        private enum LoginResultType {
-            Process,
-            Success,
-            Fail
-        }
 
-        public static string PlayFabId;
+        public static LoginResult LoginResult;
 
         public static async Task<bool> TryLogin() {
-            var resultType = LoginResultType.Process;
+            if (PlayFabClientAPI.IsClientLoggedIn()) {
+                return true;
+            }
+            
+            var resultType = CommandResultType.Process;
             var loginRequest = new LoginWithCustomIDRequest { CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
             
             void OnLoginSuccess(LoginResult result) {
-                PlayFabId = result.PlayFabId;
+                LoginResult = result;
+                resultType = CommandResultType.Success;
                 Debug.Log("OnLoginSuccess");
-                resultType = LoginResultType.Success;
             }
             
             void OnLoginFailure(PlayFabError error) {
                 Debug.LogError(error.GenerateErrorReport());
-                resultType = LoginResultType.Fail;
+                resultType = CommandResultType.Fail;
             }
 
             PlayFabClientAPI.LoginWithCustomID(loginRequest, OnLoginSuccess, OnLoginFailure);
 
-            bool IsComplete() => resultType != LoginResultType.Process;
-            //await Observable.TakeWhile(IsComplete);
-            return true;
+            bool IsComplete() => resultType != CommandResultType.Process;
+            
+            await Observable.EveryUpdate()
+                .Where(_ => IsComplete())
+                .FirstOrDefault()
+                .ToTask();
+
+            return resultType == CommandResultType.Success;
         }
     }
 }

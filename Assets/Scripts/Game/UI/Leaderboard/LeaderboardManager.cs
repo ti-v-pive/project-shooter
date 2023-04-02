@@ -1,13 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
+using UniRx;
 using UnityEngine;
 
 namespace Game.UI.Leaderboard {
     public class LeaderboardManager {
         private const string PLAY_FAB_STATISTIC_NAME = "HighScore";
 
-        public static void AddScore(int score) {
+        public static async void AddScore(int score) {
+            var result = await PlayFabLogin.TryLogin();
+            if (!result) {
+                return;
+            }
+            
+            var resultType = CommandResultType.Process;
+            
+            void OnScoreAdded(UpdatePlayerStatisticsResult result) {
+                Debug.Log("Score added successfully.");
+                resultType = CommandResultType.Success;
+            }
+
+            void OnError(PlayFabError error) {
+                Debug.LogError($"PlayFab Error: {error.ErrorMessage}");
+                resultType = CommandResultType.Fail;
+            }
+
             var request = new UpdatePlayerStatisticsRequest {
                 Statistics = new List<StatisticUpdate> {
                     new() { StatisticName = PLAY_FAB_STATISTIC_NAME, Value = score }
@@ -15,19 +34,51 @@ namespace Game.UI.Leaderboard {
             };
 
             PlayFabClientAPI.UpdatePlayerStatistics(request, OnScoreAdded, OnError);
+            
+            bool IsComplete() => resultType != CommandResultType.Process;
+            
+            await Observable.EveryUpdate()
+                .Where(_ => IsComplete())
+                .FirstOrDefault()
+                .ToTask();
         }
 
-        public static void GetTopScores(int count, System.Action<List<PlayerLeaderboardEntry>> callback) {
+        public static async Task<List<PlayerLeaderboardEntry>> GetTopScores(int count) {
+            var loginResult = await PlayFabLogin.TryLogin();
+            if (!loginResult) {
+                return null;
+            }
+            
             var request = new GetLeaderboardRequest {
                 StatisticName = PLAY_FAB_STATISTIC_NAME,
                 StartPosition = 0,
                 MaxResultsCount = count
             };
+            
+            var resultType = CommandResultType.Process;
+            GetLeaderboardResult result = null;
+            
+            void ResultCallback(GetLeaderboardResult getLeaderboardResult) {
+                Debug.Log("Score added successfully.");
+                resultType = CommandResultType.Success;
+                result = getLeaderboardResult;
+            }
 
-            PlayFabClientAPI.GetLeaderboard(request, result => callback(result.Leaderboard), OnError);
+            void ErrorCallback(PlayFabError error) {
+                Debug.LogError($"PlayFab Error: {error.ErrorMessage}");
+                resultType = CommandResultType.Fail;
+            }
+
+            PlayFabClientAPI.GetLeaderboard(request, ResultCallback, ErrorCallback);
+            
+            bool IsComplete() => resultType != CommandResultType.Process;
+            
+            await Observable.EveryUpdate()
+                .Where(_ => IsComplete())
+                .FirstOrDefault()
+                .ToTask();
+            
+            return result.Leaderboard;
         }
-
-        private static void OnScoreAdded(UpdatePlayerStatisticsResult result) => Debug.Log("Score added successfully.");
-        private static void OnError(PlayFabError error) => Debug.LogError($"PlayFab Error: {error.ErrorMessage}");
     }
 }

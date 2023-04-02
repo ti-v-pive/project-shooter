@@ -52,10 +52,10 @@ namespace Game.UI.Leaderboard {
         private void OnRejectClick() => _response = Response.Reject;
 
 #if UNITY_EDITOR
-        [ContextMenu("TestLogin")]
-        private void TestLogin() {
-            var result = PlayFabLogin.TryLogin();
-            result.ToObservable().Subscribe(message => Debug.Log(message));
+        [ContextMenu("TestUsername")]
+        private void TestNickname() {
+            var result = UsernameManager.TryGetUsername();
+            result.ToObservable().Subscribe(Debug.Log);
         }
 
         [ContextMenu("TestAddScore")]
@@ -65,7 +65,7 @@ namespace Game.UI.Leaderboard {
         
         [ContextMenu("TestGetScore")]
         private void TestGetScore() {
-            LeaderboardManager.GetTopScores(10, ScoreCallback);
+            LeaderboardManager.GetTopScores(10).ToObservable().Subscribe(ScoreCallback);
         }
         
         private static void ScoreCallback(List<PlayerLeaderboardEntry> list) {
