@@ -6,7 +6,6 @@ namespace Game.Animation {
         [SerializeField] private Animator animator;
         [SerializeField] private string horizontalVelocityParameter = "HorizontalVelocity";
         [SerializeField] private string verticalVelocityParameter = "VerticalVelocity";
-        [SerializeField] private string speedParameter = "Speed";
 
         private Transform _transform;
         private Transform Transform => _transform ??= rb.transform;
