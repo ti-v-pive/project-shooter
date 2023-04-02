@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -12,7 +11,6 @@ namespace Game.AI {
         
         private void Awake() {
             Init();
-            MessageBroker.Default.Receive<NaveMeshRebuildSignal>().Subscribe(_ => Init());
         }
 
         private void Init() {
