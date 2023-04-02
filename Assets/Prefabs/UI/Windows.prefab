@@ -120,9 +120,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5424926095322184285}
-  - component: {fileID: 464470272289307725}
   - component: {fileID: 8534306122385477809}
   - component: {fileID: 780559209854428532}
+  - component: {fileID: 8848865147035917374}
   m_Layer: 0
   m_Name: LeaderBoardWindow
   m_TagString: Untagged
@@ -155,21 +155,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 920, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &464470272289307725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009219847965140246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88a916e6f4e04d3da76547e77ef905e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inputField: {fileID: 0}
-  _buttonAccept: {fileID: 0}
-  _buttonReject: {fileID: 5551708994705619584}
 --- !u!223 &8534306122385477809
 Canvas:
   m_ObjectHideFlags: 0
@@ -208,6 +193,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8848865147035917374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009219847965140246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a78adadaa3a4edc910ec8e70fc9b434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputField: {fileID: 0}
+  _buttonClose: {fileID: 5551708994705619584}
 --- !u!1 &2060931292762466819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,7 +1144,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 400}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8812778243898746897
 MonoBehaviour:
   m_ObjectHideFlags: 0

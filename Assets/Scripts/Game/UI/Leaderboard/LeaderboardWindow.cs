@@ -1,13 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using PlayFab.ClientModels;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using UniRx;
-using UnityEngine.Serialization;
 
 namespace Game.UI.Leaderboard {
     public class LeaderboardWindow : MonoBehaviourSingleton<LeaderboardWindow> {
@@ -17,7 +13,6 @@ namespace Game.UI.Leaderboard {
             Reject
         }
         
-        [SerializeField] private TMP_InputField _inputField;
         [SerializeField] private Button _buttonClose;
 
         private Response _response;
@@ -28,13 +23,11 @@ namespace Game.UI.Leaderboard {
             HideInternal();
         }
 
-        public async Task<string> Show() {
+        public async Task Show() {
             _response = Response.None;
             ShowInternal();
             await WaitForButton().ToObservable();
-            var userId = _inputField.text;
             HideInternal();
-            return _response == Response.Accept ? userId : string.Empty;
         }
         
         private IEnumerator WaitForButton() {
