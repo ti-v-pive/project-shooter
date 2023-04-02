@@ -148,7 +148,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -323,13 +323,34 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 400
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 464470272289307725, guid: 85136e9e03fe4dd4491c34a0040d1990, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85136e9e03fe4dd4491c34a0040d1990, type: 3}
 --- !u!224 &1784262336589601430 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4111809377175284872, guid: 85136e9e03fe4dd4491c34a0040d1990, type: 3}
   m_PrefabInstance: {fileID: 2437271978846926366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4193065923760837384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2009219847965140246, guid: 85136e9e03fe4dd4491c34a0040d1990, type: 3}
+  m_PrefabInstance: {fileID: 2437271978846926366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8848865147035917374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193065923760837384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a78adadaa3a4edc910ec8e70fc9b434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputField: {fileID: 0}
+  _buttonAccept: {fileID: 0}
+  _buttonReject: {fileID: 0}
 --- !u!1001 &4052651892947433265
 PrefabInstance:
   m_ObjectHideFlags: 0
