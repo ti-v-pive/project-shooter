@@ -48,17 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
+  _type: 0
   _shootType: 0
-  _ownerType: 0
-  _bulletsCount: -1
   _bulletPrefab: {fileID: 429081182357596975, guid: 52d3baf8c47404448a6a504c07a2f60e, type: 3}
   _bulletSpawner: {fileID: 4429285516227433077}
   _bulletForce: 10
-  _everyShootDelay: 0.1
+  _bulletsCount: -1
+  _shootCooldown: 0.1
   _spreadMin: 0
   _spreadMax: 0.1
   _spreadStep: 0.01
-  _spreadLifetime: 1
+  _spreadCooldown: 1
 --- !u!1 &6373173282628413205
 GameObject:
   m_ObjectHideFlags: 0

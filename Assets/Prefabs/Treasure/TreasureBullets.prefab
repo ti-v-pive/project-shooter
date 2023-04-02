@@ -106,7 +106,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2649382670311156333, guid: 3d695b8200fcd7243a46a00a650f63f0, type: 3}
       propertyPath: m_Name
-      value: TreasureWeaponAutomaticInfin
+      value: TreasureBulletsAutomatic
       objectReference: {fileID: 0}
     - target: {fileID: 2649382670311156334, guid: 3d695b8200fcd7243a46a00a650f63f0, type: 3}
       propertyPath: m_RootOrder
@@ -159,7 +159,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2649382670311156333, guid: 3d695b8200fcd7243a46a00a650f63f0, type: 3}
   m_PrefabInstance: {fileID: 1576222887713382146}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8927958620858540142
+--- !u!114 &5893346012451496524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,10 +168,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3538599903142344047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac8c3af88ac4444bb790cba8012ce33, type: 3}
+  m_Script: {fileID: 11500000, guid: d25438c79a484ea7b7f12a2d6c68b97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 7574072392944211890, guid: ac85b7c5796cd274fa03c415a427f7ed, type: 3}
+  _type: 2
+  _count: -1
 --- !u!4 &3538599903472452604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2649382669947378942, guid: 3d695b8200fcd7243a46a00a650f63f0, type: 3}

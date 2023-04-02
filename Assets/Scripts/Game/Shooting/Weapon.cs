@@ -10,7 +10,9 @@ namespace Game {
 
     public class Weapon : MonoBehaviour {
         [SerializeField] private float _damage;
-        [Header("У ботов всегда Automatic!")]
+        [Header("Для инвентаря")]
+        [SerializeField] private WeaponType _type;
+        [Header("У ботов всегда Queue!")]
         [SerializeField] private WeaponShootType _shootType;
         
         [Header("Bullet")]
@@ -23,7 +25,7 @@ namespace Game {
         
         [Header("Периодичность выстрелов")]
         [SerializeField] private float _shootCooldown = 0.1f;
-        [Header("Разброс (для Automatic)")]
+        [Header("Разброс (для Queue)")]
         [SerializeField] private float _spreadMin = 0;
         [SerializeField] private float _spreadMax = 0.1f;
         [SerializeField] private float _spreadStep = 0.01f;
@@ -37,7 +39,10 @@ namespace Game {
         private Collider[] _collidersToIgnore;
         
         public bool IsPlayer => _ownerType == CreatureType.Player;
-        public bool IsAutomatic => _shootType == WeaponShootType.Automatic;
+        public bool IsAutomatic => _shootType == WeaponShootType.Queue;
+
+        public WeaponType Type => _type;
+        public int BulletsCount => _bulletsCount;
         
         private void Awake() {
             _spread = _spreadMin;
@@ -83,6 +88,15 @@ namespace Game {
 
         public void Ignore(Transform parent) {
             _collidersToIgnore = parent.GetComponentsInChildren<Collider>();
+        }
+
+        public void AddBulletsCount(int count) {
+            if (count < 0) {
+                _bulletsCount = count;
+                return;
+            }
+
+            _bulletsCount += count;
         }
 
     }

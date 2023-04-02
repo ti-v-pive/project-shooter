@@ -9,15 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6313406591921875262, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _spreadMax
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -6313406591921875262, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _masShootCount
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: -6313406591921875262, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
-      propertyPath: _spreadDuration
-      value: 0.3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -6313406591921875262, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _everyShootDelay
@@ -72,8 +68,16 @@ PrefabInstance:
       value: WeaponAutomatic
       objectReference: {fileID: 0}
     - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _shootType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _bulletsCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4362912953099665299, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
