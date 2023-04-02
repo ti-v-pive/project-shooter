@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 722473057994974636}
   - component: {fileID: 2948227387232393536}
   - component: {fileID: 2171196759284831544}
-  - component: {fileID: 4277645295574296413}
   - component: {fileID: 7961982774648349380}
   m_Layer: 0
   m_Name: Player
@@ -82,23 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1582f409fc4131a5356b0a802c8bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 4277645295574296413}
+  _health: {fileID: 7862024746316652828}
   _weapons: {fileID: 7961982774648349380}
   _collider: {fileID: 722473059490681223}
---- !u!114 &4277645295574296413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722473057994974637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeaf0e26b54a4eae9ecb9f3a57ba011d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectToDestroy: {fileID: 0}
-  _health: 1
 --- !u!114 &7961982774648349380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +440,7 @@ GameObject:
   - component: {fileID: 722473059490681223}
   - component: {fileID: 722473059490681217}
   - component: {fileID: 3966069293733090369}
+  - component: {fileID: 7862024746316652828}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Player
@@ -521,6 +507,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20acd43e4804b27bd95a03f1c751454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7862024746316652828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722473059490681219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeaf0e26b54a4eae9ecb9f3a57ba011d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToDestroy: {fileID: 722473057994974611}
+  _health: 1
 --- !u!1 &2743196810678050963
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +763,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 0}
   _bulletSpawner: {fileID: 0}
   _bulletForce: 10
-  _bulletsCount: -1
   _shootCooldown: 0.1
   _spreadMin: 0
   _spreadMax: 0.1

@@ -27,7 +27,7 @@ namespace Game {
             Die();
         }
 
-        private void Die() {
+        protected virtual void Die() {
             IsDead = true;
             PlayDieEffect();
         }

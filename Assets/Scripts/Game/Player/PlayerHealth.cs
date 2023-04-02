@@ -7,5 +7,10 @@
             
             base.TakeDamage(damage);
         }
+
+        protected override void Die() {
+            //base.Die();
+            Main.Instance.Lose();
+        }
     }
 }

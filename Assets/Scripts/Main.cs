@@ -43,6 +43,14 @@ public class Main : MonoBehaviourSingleton<Main> {
         // pause/resume game managers
     }
 
+    public void Lose() {
+        Debug.LogError("LOSE");
+    }
+
+    public void Win() {
+        Debug.LogError("WIN");
+    }
+
 #if UNITY_EDITOR
     private void OnEditorPauseStateChanged(PauseState state) {
         OnApplicationPause(state == PauseState.Paused);
