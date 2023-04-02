@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Game.AI {
     public class AIController : MonoBehaviour {
@@ -14,6 +15,7 @@ namespace Game.AI {
         public float shootDistance = 10f;
         public float fieldOfViewAngle = 110f;
         public float delayBeforeReturnToPatrolling = 2f;
+        public float nextWaypointRadius = 30f;
         
         [Header("Weapon")]
         [SerializeField] private Transform _ignore;
@@ -59,7 +61,7 @@ namespace Game.AI {
         }
 
         private void GoToNextPoint() {
-            var point = RandomNavMeshPoint.GetRandomPointOnNavMesh();
+            var point = GetRandomPointAroundObject();
             _currentWaypoint = point;
             _navMeshAgent.SetDestination(point);
         }
@@ -152,5 +154,12 @@ namespace Game.AI {
             return Mathf.Abs(Quaternion.Angle(transform.rotation, targetRotation)) < 0.1f;
         }
         
+        private Vector3 GetRandomPointAroundObject() {
+            var randomDirection = Random.insideUnitSphere * nextWaypointRadius;
+            randomDirection += _transform.position;
+            return NavMesh.SamplePosition(randomDirection, out var navMeshHit, nextWaypointRadius, NavMesh.AllAreas) 
+                ? navMeshHit.position 
+                : Vector3.zero;
+        }
     }
 }
