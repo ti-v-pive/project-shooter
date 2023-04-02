@@ -17,7 +17,21 @@ namespace Game {
             }
             
             Weapon = Instantiate(weaponPrefab, _container);
-            Weapon.OwnerType = CreatureType.Player;
+            Weapon.SetOwner(CreatureType.Player);
+        }
+        
+        private void Update() {
+            if (!Weapon) {
+                return;
+            }
+            
+            if (Input.GetMouseButtonDown(0)) {
+                Weapon.TryShoot();
+            }
+
+            if (Input.GetMouseButton(0) && Weapon.IsAutomatic) {
+                Weapon.TryShoot();
+            }
         }
     }
 }
