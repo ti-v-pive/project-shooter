@@ -2,6 +2,7 @@ using Game;
 using Tics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class Main : MonoBehaviourSingleton<Main> {
@@ -45,10 +46,16 @@ public class Main : MonoBehaviourSingleton<Main> {
 
     public void Lose() {
         Debug.LogError("LOSE");
+        Restart();
     }
 
     public void Win() {
         Debug.LogError("WIN");
+        Restart();
+    }
+
+    private void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 #if UNITY_EDITOR
