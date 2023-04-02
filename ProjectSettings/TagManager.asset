@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Bullets
+  - 
   - 
   - 
   - 
@@ -40,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI
-    uniqueID: 2975398603
-    locked: 0
-  - name: UI-Windows
-    uniqueID: 1358931717
     locked: 0
