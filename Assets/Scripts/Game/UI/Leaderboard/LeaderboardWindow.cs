@@ -9,7 +9,7 @@ using Utils;
 using UniRx;
 
 namespace Game.UI.Leaderboard {
-    public class EnterUserIdWindow : MonoBehaviourSingleton<EnterUserIdWindow> {
+    public class LeaderboardWindow : MonoBehaviourSingleton<LeaderboardWindow> {
         private enum Response {
             None,
             Accept,
