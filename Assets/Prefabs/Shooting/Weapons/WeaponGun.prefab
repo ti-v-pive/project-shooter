@@ -144,6 +144,10 @@ PrefabInstance:
       propertyPath: _shooter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _spreadCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6313406591921875262, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}

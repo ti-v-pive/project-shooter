@@ -154,11 +154,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _shootType
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _spreadMax
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _spreadMin
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _spreadStep
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _bulletsCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _shootCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _bulletsForOneShoot
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4362912953099665299, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
