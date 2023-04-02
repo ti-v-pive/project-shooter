@@ -70,7 +70,6 @@ MonoBehaviour:
   animator: {fileID: 5687467452486057000}
   horizontalVelocityParameter: HorizontalVelocity
   verticalVelocityParameter: VerticalVelocity
-  speedParameter: VerticalVelocity
 --- !u!114 &2171196759284831544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rightHand: {fileID: 7539627341502803870}
-  _weapons: []
+  _weapons:
+  - {fileID: 5399616888594094155, guid: 3320e796bf5a9584d8b544cc71bbf2ac, type: 3}
+  - {fileID: 7574072392944211890, guid: 78aef1075a532d541b9eb2fdb811ac56, type: 3}
+  - {fileID: 7574072392944211890, guid: ac85b7c5796cd274fa03c415a427f7ed, type: 3}
 --- !u!1 &722473058026683010
 GameObject:
   m_ObjectHideFlags: 0

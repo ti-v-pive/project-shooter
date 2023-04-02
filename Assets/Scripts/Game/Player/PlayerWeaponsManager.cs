@@ -8,7 +8,7 @@ namespace Game {
 
     public class PlayerWeaponsManager : MonoBehaviourSingleton<PlayerWeaponsManager> {
         [SerializeField] private PlayerHand _rightHand;
-        [SerializeField] private List<Weapon> _weapons; // temp
+        [SerializeField] private List<Weapon> _weapons;
 
         private void Start() {
             TrySelectWeapon(0);
