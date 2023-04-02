@@ -30,9 +30,7 @@ public class Main : MonoBehaviourSingleton<Main> {
     }
     
     private void OnApplicationFocus(bool hasFocus) {
-        if (hasFocus) {
-            Cursor.visible = false;
-        }
+        
     }
 
     private void OnApplicationPause(bool isPaused) {

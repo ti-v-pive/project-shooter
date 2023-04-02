@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Game.AI {
     public class RandomNavMeshPoint : MonoBehaviour {
         private static NavMeshTriangulation _nav;
         private static Mesh _mesh;
         private static float _totalArea;
-
+        
         private void Awake() {
+            Init();
+            MessageBroker.Default.Receive<NaveMeshRebuildSignal>().Subscribe(_ => Init());
+        }
+
+        private void Init() {
             _nav = NavMesh.CalculateTriangulation();
             _mesh = new Mesh {
                 vertices = _nav.vertices,

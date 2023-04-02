@@ -1,4 +1,7 @@
 ﻿using System;
+using Game.AI;
+using UniRx;
+using UnityEditor.AI;
 using UnityEngine;
 
 namespace Game {
@@ -39,6 +42,13 @@ namespace Game {
             }
             
             Destroy(gameObject);
+
+            if (!gameObject.isStatic) {
+                return;
+            }
+            MessageBroker.Default.Publish(new StaticObjectDestroy());
         }
     }
+
+    public class StaticObjectDestroy {}
 }
