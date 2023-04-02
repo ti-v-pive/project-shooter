@@ -19,7 +19,11 @@ namespace Game.UI.Leaderboard {
 
         protected override void Awake() {
             base.Awake();
-            _buttonClose.onClick.AddListener(OnCloseClick);
+            
+            if (_buttonClose) {
+                _buttonClose.onClick.AddListener(OnCloseClick);
+            }
+            
             HideInternal();
         }
 

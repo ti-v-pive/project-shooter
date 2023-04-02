@@ -20,6 +20,7 @@ namespace Game {
         [SerializeField] private Transform _bulletSpawner;
         [Header("Скорость вылета пули")]
         [SerializeField] private float _bulletForce = 10;
+        [SerializeField] private int _bulletsForOneShoot = 1;
 
         [Header("Периодичность выстрелов")]
         [SerializeField] private float _shootCooldown = 0.1f;
@@ -29,7 +30,7 @@ namespace Game {
         [SerializeField] private float _spreadStep = 0.01f;
         [Header("Время сброса spread после последнего выстрела")]
         [SerializeField] private float _spreadCooldown = 1f;
-        
+
         [SerializeField] private SoundEffect _shootSoundEffect;
 
         private float _spread;
@@ -63,16 +64,12 @@ namespace Game {
         private void Shoot() {
             _lastShootTime = Time.time;
 
-            _transform ??= transform;
-            
-            var direction = _transform.forward + new Vector3 (Random.Range(-_spread, _spread), 0, 0);
             var damage = IsPlayer && Main.Instance.Modifications.IsDoubleDamage ? 2.0f * _damage : _damage;
             
-            var bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, _transform.rotation);
-            bullet.SetForce(direction, _bulletForce);
-            bullet.SetDamage(damage);
-            bullet.Ignore(_collidersToIgnore);
-            
+            for (int i = 0; i < _bulletsForOneShoot; i++) {
+                ShootBullet(damage);
+            }
+
             if (_spread < _spreadMax) {
                 _spread = Math.Min(_spread + _spreadStep, _spreadMax);
             }
@@ -82,6 +79,17 @@ namespace Game {
             }
 
             MessageBroker.Default.Publish(new ShootSignal { OwnerType = _ownerType });
+        }
+
+        private void ShootBullet(float damage) {
+            _transform ??= transform;
+            
+            var direction = _transform.forward + new Vector3 (Random.Range(-_spread, _spread), 0, 0);
+
+            var bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, _transform.rotation);
+            bullet.SetForce(direction, _bulletForce);
+            bullet.SetDamage(damage);
+            bullet.Ignore(_collidersToIgnore);
         }
 
         public void SetOwner(CreatureType owner) {
