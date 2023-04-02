@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeaf0e26b54a4eae9ecb9f3a57ba011d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectToDestroy: {fileID: 0}
   _health: 1
 --- !u!114 &7961982774648349380
 MonoBehaviour:
@@ -654,6 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 4200875363387827523}
+  _ignore: {fileID: 722473057994974611}
 --- !u!1001 &5687467452495432008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -753,8 +755,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb30d1b505942a1af015ded015b1da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OwnerType: 1
   _damage: 0
+  _shootType: 0
   _bulletPrefab: {fileID: 0}
   _bulletSpawner: {fileID: 0}
-  _shooter: {fileID: 0}
+  _bulletForce: 10
+  _bulletsCount: -1
+  _shootCooldown: 0.1
+  _spreadMin: 0
+  _spreadMax: 0.1
+  _spreadStep: 0.01
+  _spreadCooldown: 1

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Game {
     public class Health : MonoBehaviour {
+        [SerializeField] private Transform _objectToDestroy;
         [SerializeField] private float _health;
 
         public bool IsDead { get; private set; }
@@ -32,6 +33,11 @@ namespace Game {
         }
 
         private void PlayDieEffect() {
+            if (_objectToDestroy) {
+                Destroy(_objectToDestroy.gameObject);
+                return;
+            }
+            
             Destroy(gameObject);
         }
     }

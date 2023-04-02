@@ -14,6 +14,10 @@ namespace Game.AI {
         public float shootDistance = 10f;
         public float fieldOfViewAngle = 110f;
         public float delayBeforeReturnToPatrolling = 2f;
+        
+        [Header("Weapon")]
+        [SerializeField] private Transform _ignore;
+        [SerializeField] private Weapon _weapon;
 
         private NavMeshAgent _navMeshAgent;
         private Vector3 _currentWaypoint;
@@ -24,6 +28,13 @@ namespace Game.AI {
 
         private static Transform PlayerTransform => Player.Instance.ModelTransform;
         private float DistanceToPlayer => Vector3.Distance(_transform.position, PlayerTransform.position);
+
+        private void Awake() {
+            if (_weapon) {
+                _weapon.SetOwner(CreatureType.Bot);
+                _weapon.Ignore(_ignore);
+            }
+        }
 
         private void Start() {
             _transform = transform;
@@ -97,7 +108,9 @@ namespace Game.AI {
             _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, Time.deltaTime * _navMeshAgent.angularSpeed);
             
             if (IsLookAtPlayer(targetRotation)) {
-                //TODO: shoot
+                if (_weapon) {
+                    _weapon.TryShoot();
+                }
             }
         }
 
@@ -138,5 +151,6 @@ namespace Game.AI {
         private bool IsLookAtPlayer(Quaternion targetRotation) {
             return Mathf.Abs(Quaternion.Angle(transform.rotation, targetRotation)) < 0.1f;
         }
+        
     }
 }

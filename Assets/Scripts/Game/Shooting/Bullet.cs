@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game {
     public class Bullet : MonoBehaviour {
@@ -10,8 +11,6 @@ namespace Game {
         
         private float _damage;
 
-        public Collider Collider => _collider;
-        
         private void Awake() {
             Destroy(gameObject, _lifeTime);
         }
@@ -33,6 +32,12 @@ namespace Game {
         
         public void SetDamage(float damage) {
             _damage = damage;
+        }
+
+        public void Ignore(IEnumerable<Collider> targets) {
+            foreach (var target in targets) {
+                Physics.IgnoreCollision(_collider, target);
+            }
         }
     }
 }

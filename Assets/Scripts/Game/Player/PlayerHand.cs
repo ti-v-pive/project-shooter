@@ -3,6 +3,7 @@
 namespace Game {
     public class PlayerHand : MonoBehaviour {
         [SerializeField] private Transform _container;
+        [SerializeField] private Transform _ignore;
 
         public Weapon Weapon { get; private set; }
 
@@ -18,6 +19,7 @@ namespace Game {
             
             Weapon = Instantiate(weaponPrefab, _container);
             Weapon.SetOwner(CreatureType.Player);
+            Weapon.Ignore(_ignore);
         }
         
         private void Update() {

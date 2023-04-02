@@ -34,6 +34,7 @@ namespace Game {
         private float _lastShootTime;
         private Transform _transform;
         private CreatureType _ownerType;
+        private Collider[] _collidersToIgnore;
         
         public bool IsPlayer => _ownerType == CreatureType.Player;
         public bool IsAutomatic => _shootType == WeaponShootType.Automatic;
@@ -67,6 +68,7 @@ namespace Game {
             var bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, _transform.rotation);
             bullet.SetForce(direction, _bulletForce);
             bullet.SetDamage(damage);
+            bullet.Ignore(_collidersToIgnore);
             
             if (_spread < _spreadMax) {
                 _spread = Math.Min(_spread + _spreadStep, _spreadMax);
@@ -77,6 +79,10 @@ namespace Game {
 
         public void SetOwner(CreatureType owner) {
             _ownerType = owner;
+        }
+
+        public void Ignore(Transform parent) {
+            _collidersToIgnore = parent.GetComponentsInChildren<Collider>();
         }
 
     }
