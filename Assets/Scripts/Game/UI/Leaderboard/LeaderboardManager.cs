@@ -10,6 +10,7 @@ namespace Game.UI.Leaderboard {
         private const string PLAY_FAB_STATISTIC_NAME = "HighScore";
 
         public static async Task AddScore(int score) {
+            NetLoadingImage.SetActive(true);
             var result = await PlayFabLogin.TryLogin();
             if (!result) {
                 return;
@@ -41,9 +42,12 @@ namespace Game.UI.Leaderboard {
                 .Where(_ => IsComplete())
                 .FirstOrDefault()
                 .ToTask();
+            
+            NetLoadingImage.SetActive(false);
         }
 
         public static async Task<List<PlayerLeaderboardEntry>> GetTopScores() {
+            NetLoadingImage.SetActive(true);
             var loginResult = await PlayFabLogin.TryLogin();
             if (!loginResult) {
                 return null;
@@ -52,7 +56,12 @@ namespace Game.UI.Leaderboard {
             var request = new GetLeaderboardRequest {
                 StatisticName = PLAY_FAB_STATISTIC_NAME,
                 StartPosition = 0,
-                MaxResultsCount = 100
+                MaxResultsCount = 100,
+                ProfileConstraints = new PlayerProfileViewConstraints {
+                    ShowLocations = true,
+                    ShowDisplayName = true,
+                    
+                }
             };
             
             var resultType = CommandResultType.Process;
@@ -77,8 +86,9 @@ namespace Game.UI.Leaderboard {
                 .Where(_ => IsComplete())
                 .FirstOrDefault()
                 .ToTask();
-            
-            return result.Leaderboard;
+
+            NetLoadingImage.SetActive(false);
+            return result?.Leaderboard;
         }
     }
 }

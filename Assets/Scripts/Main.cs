@@ -1,20 +1,38 @@
 using Game;
 using Game.UI.Leaderboard;
 using Tics;
+using UniRx;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
 
+public class GameLoadedSignal {}
+
 public class Main : MonoBehaviourSingleton<Main> {
-    public readonly GameItemsManager Inventory = new ();
-    public readonly ModificationsManager Modifications = new ();
     
-    private bool _isStarted;
+    [SerializeField] private GameObject _loadingImage;
+    [SerializeField] private AudioSource _gameMusic;
+    [SerializeField] private AudioSource _menuMusic;
+    
+    public GameItemsManager Inventory { get; private set; }
+    public ModificationsManager Modifications { get; private set; }
+
     private bool _isPaused;
     
+    public static bool IsGameStarted  { get; private set; }
+
+
     private void Start() {
-        _isStarted = true;
+        LoadGame();
+    }
+
+    private void LoadGame() {
+        Inventory = new GameItemsManager();
+        Modifications = new ModificationsManager();
+        _loadingImage.SetActive(true);
+        var operation = SceneManager.LoadSceneAsync(sceneBuildIndex : 1, LoadSceneMode.Additive);
+        operation.completed += OnSceneLoaded;
     }
 
     private void Update() {
@@ -22,7 +40,7 @@ public class Main : MonoBehaviourSingleton<Main> {
             return;
         }
 
-        if (!_isStarted) {
+        if (!IsGameStarted) {
             return;
         }
         
@@ -33,10 +51,20 @@ public class Main : MonoBehaviourSingleton<Main> {
         
     }
 
+    private void OnSceneLoaded(AsyncOperation asyncOperation) {
+        _gameMusic.Play();
+        _menuMusic.Stop();
+        Observable.TimerFrame(30).Subscribe(_ => {
+            IsGameStarted = true;
+            _loadingImage.SetActive(false);
+            MessageBroker.Default.Publish(new GameLoadedSignal());
+        });
+    }
+
     private void OnApplicationPause(bool isPaused) {
         _isPaused = isPaused;
 
-        if (!_isStarted) {
+        if (!IsGameStarted) {
             return;
         }
         
@@ -44,27 +72,26 @@ public class Main : MonoBehaviourSingleton<Main> {
     }
 
     public void Lose() {
-        Debug.LogError("LOSE");
+        Debug.Log("LOSE");
         CompleteGameWithRestart();
     }
 
     public void Win() {
-        Debug.LogError("WIN");
+        Debug.Log("WIN");
         CalcExp();
         CompleteGameWithRestart();
     }
 
     private async void CompleteGameWithRestart() {
-        Time.timeScale = 0;
+        IsGameStarted = false;
+        _gameMusic.Stop();
+        _menuMusic.Play();
+        
+        SceneManager.UnloadSceneAsync(1);
         await UserManager.TryGetUsername();
-        await LeaderboardManager.AddScore(Inventory.Coins.Count);
+        await LeaderboardManager.AddScore(Inventory.Exp.Count);
         await LeaderboardWindow.Instance.Show();
-        Restart();
-        Time.timeScale = 1;
-    }
-
-    private void Restart() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LoadGame();
     }
 
 #if UNITY_EDITOR

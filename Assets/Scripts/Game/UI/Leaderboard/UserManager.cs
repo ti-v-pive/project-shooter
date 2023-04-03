@@ -8,6 +8,7 @@ namespace Game.UI.Leaderboard {
     public static class UserManager {
         
         public static async Task<string> TryGetUsername() {
+            NetLoadingImage.SetActive(true);
             var result = await PlayFabLogin.TryLogin();
             if (!result) {
                 return string.Empty;
@@ -26,10 +27,12 @@ namespace Game.UI.Leaderboard {
 
             var displayNameRequest = new UpdateUserTitleDisplayNameRequest { DisplayName = userNameFromWindow };
             PlayFabClientAPI.UpdateUserTitleDisplayName(displayNameRequest, OnUpdateUserTitleDisplayName, OnUpdateUserTitleDisplayNameFailure);
+            NetLoadingImage.SetActive(false);
             return userNameFromWindow;
         }
 
         public static async Task<PlayerProfileModel> TryGetUserProfile() {
+            NetLoadingImage.SetActive(true);
             var profileResultType = CommandResultType.Process;
             GetPlayerProfileResult profileResult = null;
 
@@ -54,6 +57,7 @@ namespace Game.UI.Leaderboard {
                 .FirstOrDefault()
                 .ToTask();
 
+            NetLoadingImage.SetActive(false);
             return profileResultType == CommandResultType.Fail ? null : profileResult.PlayerProfile;
         }
 

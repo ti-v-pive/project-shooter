@@ -6,8 +6,11 @@ namespace Game {
         [SerializeField] private Transform _objectToDestroy;
         [SerializeField] private float _health;
         [SerializeField] private Effect _hitEffect;
+        [SerializeField] private Animator _hitAnimation;
         [SerializeField] private Effect _destroyEffect;
         [SerializeField] private SoundEffect _hitSoundEffect;
+        private static readonly int _hit = Animator.StringToHash("Hit");
+        private static readonly int _random = Animator.StringToHash("Random");
 
         public bool IsDead { get; private set; }
 
@@ -26,6 +29,10 @@ namespace Game {
 
             if (_health > 0) {
                 _hitEffect?.PlayNew(point, rotation);
+                if (_hitAnimation) {
+                    _hitAnimation.SetBool(_hit, true);
+                    _hitAnimation.SetInteger(_random, Random.Range(0, 100));
+                }
                 return;
             }
             

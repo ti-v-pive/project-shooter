@@ -1,4 +1,5 @@
 ﻿using System;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -6,6 +7,7 @@ using Random = UnityEngine.Random;
 namespace Game.AI {
     public class AIController : MonoBehaviour {
         private enum AIState {
+            None,
             Patrolling,
             Chasing,
             Shooting
@@ -24,9 +26,10 @@ namespace Game.AI {
         private NavMeshAgent _navMeshAgent;
         private Vector3 _currentWaypoint;
         private Vector3 _lastSeenPlayerPosition;
-        private AIState _currentState;
+        private AIState _currentState = AIState.None;
         private Transform _transform;
         private float _returnToPatrollingDelay;
+        private IDisposable _disposable;
 
         private static Transform PlayerTransform => Player.Instance.ModelTransform;
         private float DistanceToPlayer => Vector3.Distance(_transform.position, PlayerTransform.position);
@@ -41,10 +44,19 @@ namespace Game.AI {
         private void Start() {
             _transform = transform;
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            SetState(AIState.Patrolling);
+            _disposable = MessageBroker.Default.Receive<GameLoadedSignal>().Subscribe(_ => OnGameLoaded());
+        }
+        
+        private void OnGameLoaded() {
+            Observable.TimerFrame(60).Subscribe(_ => {
+                SetState(AIState.Patrolling);
+            });
         }
 
         private void Update() {
+            if (!Main.IsGameStarted) {
+                return;
+            }
             switch (_currentState) {
                 case AIState.Patrolling:
                     Patrol();
@@ -55,6 +67,8 @@ namespace Game.AI {
                 case AIState.Shooting:
                     Shoot();
                     break;
+                case AIState.None:
+                    return;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -160,6 +174,10 @@ namespace Game.AI {
             return NavMesh.SamplePosition(randomDirection, out var navMeshHit, nextWaypointRadius, NavMesh.AllAreas) 
                 ? navMeshHit.position 
                 : Vector3.zero;
+        }
+
+        private void OnDestroy() {
+            _disposable.Dispose();
         }
     }
 }

@@ -10,12 +10,21 @@ namespace Game.UI.Leaderboard {
         public static LoginResult LoginResult;
 
         public static async Task<bool> TryLogin() {
+            NetLoadingImage.SetActive(true);
             if (PlayFabClientAPI.IsClientLoggedIn()) {
                 return true;
             }
             
             var resultType = CommandResultType.Process;
-            var loginRequest = new LoginWithCustomIDRequest { CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
+
+            if (!PlayerPrefs.HasKey("uniqueID")) {
+                PlayerPrefs.SetString("uniqueID", System.Guid.NewGuid().ToString());
+                PlayerPrefs.Save();
+            }
+
+            string uniqueID = PlayerPrefs.GetString("uniqueID");
+            
+            var loginRequest = new LoginWithCustomIDRequest { CustomId = uniqueID, CreateAccount = true };
             
             void OnLoginSuccess(LoginResult result) {
                 LoginResult = result;
@@ -37,6 +46,7 @@ namespace Game.UI.Leaderboard {
                 .FirstOrDefault()
                 .ToTask();
 
+            NetLoadingImage.SetActive(false);
             return resultType == CommandResultType.Success;
         }
     }

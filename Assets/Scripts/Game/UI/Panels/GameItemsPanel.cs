@@ -8,7 +8,7 @@ namespace Game {
 
         private static GameItemsManager Inventory => Main.Instance.Inventory;
 
-        private void Awake() {
+        private void Start() {
             Inventory.Get(_type).OnChangeListeners += OnChange;
             Redraw();
         }

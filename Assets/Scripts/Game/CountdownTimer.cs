@@ -16,6 +16,9 @@ namespace Game {
 
         private void Update()
         {
+            if (!Main.IsGameStarted) {
+                return;
+            }
             if (!_isActive) {
                 return;
             }

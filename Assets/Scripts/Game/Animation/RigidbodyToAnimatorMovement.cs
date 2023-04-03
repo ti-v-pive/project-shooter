@@ -8,6 +8,7 @@ namespace Game.Animation {
         [SerializeField] private Animator animator;
         [SerializeField] private string horizontalVelocityParameter = "HorizontalVelocity";
         [SerializeField] private string verticalVelocityParameter = "VerticalVelocity";
+        [SerializeField] private Vector3 _rotationOffset;
 
         private Transform _transform;
         private Transform Transform {
@@ -23,6 +24,9 @@ namespace Game.Animation {
         }
 
         private void Update() {
+            if (!Main.IsGameStarted) {
+                return;
+            }
             Vector3 velocity = Vector3.zero;
             if (rb) {
                 velocity = rb.velocity;
@@ -30,7 +34,7 @@ namespace Game.Animation {
             if (navMeshAgent) {
                 velocity = navMeshAgent.velocity;
             }
-            Vector3 localVelocity = Transform.InverseTransformDirection(velocity);
+            Vector3 localVelocity = Quaternion.Euler(_rotationOffset) * Transform.InverseTransformDirection(velocity);
 
             float horizontalVelocity = localVelocity.x;
             float verticalVelocity = localVelocity.z;

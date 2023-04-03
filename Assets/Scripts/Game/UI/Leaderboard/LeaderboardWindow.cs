@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PlayFab.ClientModels;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -35,18 +36,19 @@ namespace Game.UI.Leaderboard {
             _response = Response.None;
             ShowInternal();
             var scores = await LeaderboardManager.GetTopScores();
+            if (scores == null) {
+                HideInternal();
+                return;
+            }
             for (int i = 0; i < _players.Count; i++) {
                 var entry = scores.FirstOrDefault(e => e.Position == i);
                 var player = _players[i];
                 player.Init(entry);
             }
-            var myStat = scores.FirstOrDefault(s => s.PlayFabId == PlayFabLogin.LoginResult.PlayFabId);
-            if (myStat != null) {
-                _myStat.Init(myStat);
-            } else {
-                var nickname = await UserManager.TryGetUsername();
-                _myStat.Init(nickname, Main.Instance.Inventory.Coins.Count);
-            }
+            var nickname = await UserManager.TryGetUsername();
+            var score = Main.Instance.Inventory.Exp.Count;
+            var position = GetPositionForNewScore(scores, score);
+            _myStat.Init(nickname, position, score);
             await WaitForButton().ToObservable();
             HideInternal();
         }
@@ -61,5 +63,20 @@ namespace Game.UI.Leaderboard {
         private void HideInternal() => gameObject.SetActive(false);
 
         private void OnCloseClick() => _response = Response.Reject;
+
+        public static int GetPositionForNewScore(List<PlayerLeaderboardEntry> entries, int newScore) {
+            entries = entries.OrderBy(x => x.Position).ToList();
+
+            int newPosition = 1;
+            foreach (PlayerLeaderboardEntry scoreData in entries) {
+                if (newScore < scoreData.StatValue) {
+                    newPosition++;
+                } else {
+                    break;
+                }
+            }
+
+            return newPosition;
+        }
     }
 }
