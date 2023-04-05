@@ -6,14 +6,10 @@ namespace Game {
         public float yOffset = 0.5f;
         
         private Camera _mainCamera;
-
-        protected override void Awake() {
-            base.Awake();
-            _mainCamera = Camera.main;
-        }
+        private Camera MainCamera => _mainCamera ??= Camera.main;
 
         private void Update() {
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
             Plane plane = new Plane(Vector3.up, new Vector3(0, yOffset, 0));
 
             if (!plane.Raycast(ray, out var distance)) {

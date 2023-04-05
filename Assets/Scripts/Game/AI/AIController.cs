@@ -18,6 +18,7 @@ namespace Game.AI {
         public float fieldOfViewAngle = 110f;
         public float delayBeforeReturnToPatrolling = 2f;
         public float nextWaypointRadius = 30f;
+        public float heightRaycastOffset = 2;
         
         [Header("Weapon")]
         [SerializeField] private Transform _ignore;
@@ -156,7 +157,9 @@ namespace Game.AI {
             if (angle > fieldOfViewAngle * 0.5f) {
                 return false;
             }
-            var result = Physics.Raycast(_transform.position, direction.normalized, out var hit, chaseDistance) 
+            var pos = _transform.position;
+            var positionWithYOffset = new Vector3(pos.x, pos.y + heightRaycastOffset, pos.z);
+            var result = Physics.Raycast(positionWithYOffset, direction.normalized, out var hit, chaseDistance) 
                 && hit.transform == PlayerTransform;
             if (result) {
                 _lastSeenPlayerPosition = PlayerTransform.position;

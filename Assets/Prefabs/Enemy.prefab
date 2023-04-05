@@ -52,6 +52,8 @@ MonoBehaviour:
   shootDistance: 10
   fieldOfViewAngle: 110
   delayBeforeReturnToPatrolling: 2
+  nextWaypointRadius: 30
+  heightRaycastOffset: 0.4
   _ignore: {fileID: 2617920231471041200}
   _weapon: {fileID: 2760701998828867958}
 --- !u!195 &4793566556808396947
@@ -93,6 +95,7 @@ MonoBehaviour:
   animator: {fileID: 4309371573614921857}
   horizontalVelocityParameter: HorizontalVelocity
   verticalVelocityParameter: VerticalVelocity
+  _rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8078268708878357862
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +260,7 @@ MonoBehaviour:
   _objectToDestroy: {fileID: 2617920231471041200}
   _health: 2
   _hitEffect: {fileID: 7074842871066010876, guid: f2f25bb624b8a4b5baa4d8b56ac80e92, type: 3}
+  _hitAnimation: {fileID: 0}
   _destroyEffect: {fileID: 8725615908097194839, guid: 66ca463476ce44ce2b7c909f5e6e789b, type: 3}
   _hitSoundEffect: {fileID: 2933765701288550504, guid: cea794e7d5e5df44aa3b93a91c22e4f4, type: 3}
 --- !u!1001 &4223355712646767557
