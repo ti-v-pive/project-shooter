@@ -53,6 +53,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 429081182357596975, guid: 52d3baf8c47404448a6a504c07a2f60e, type: 3}
   _bulletSpawner: {fileID: 4429285516227433077}
   _bulletForce: 10
+  _bulletsForOneShoot: 1
   _shootCooldown: 0.1
   _spreadMin: 0
   _spreadMax: 0.1
@@ -83,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6373173282628413205}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: -0.0194, y: 0.0866, z: 1.885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
