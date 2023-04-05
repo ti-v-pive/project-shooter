@@ -72,6 +72,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _bulletForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
+      propertyPath: _bulletPrefab
+      value: 
+      objectReference: {fileID: 429081182357596975, guid: cbe19e23e078e8d4088c761226ddf93b, type: 3}
+    - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _shootCooldown
       value: 1
       objectReference: {fileID: 0}
