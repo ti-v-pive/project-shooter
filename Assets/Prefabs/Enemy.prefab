@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 15
-  shootDistance: 10
-  fieldOfViewAngle: 110
+  shootDistance: 11
+  fieldOfViewAngle: 360
   delayBeforeReturnToPatrolling: 2
   nextWaypointRadius: 30
   heightRaycastOffset: 0.4
@@ -337,6 +337,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4585484756684563631}
     m_Modifications:
+    - target: {fileID: 3089591919004964514, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089591919004964514, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 3769089753309027653, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -396,6 +404,22 @@ PrefabInstance:
     - target: {fileID: 3859862235100358675, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
       propertyPath: m_Name
       value: WeaponBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986700644736597449, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986700644736597449, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111463781014411388, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186639315721264584, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 771785ac0f7df394794efeec0a45eabc, type: 3}
