@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722473058026683010}
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: -4.154025, y: 23.575317, z: -14.060292}
+  m_LocalPosition: {x: -4.154025, y: 21.575317, z: -14.060292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 9, z: -4}
+  m_FollowOffset: {x: 0, y: 7, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 722473059490681217}
   - component: {fileID: 3966069293733090369}
   - component: {fileID: 7862024746316652828}
+  - component: {fileID: 1697418046}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Player
@@ -527,6 +528,19 @@ MonoBehaviour:
   _hitAnimation: {fileID: 0}
   _destroyEffect: {fileID: 0}
   _hitSoundEffect: {fileID: 0}
+--- !u!65 &1697418046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722473059490681219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.6}
+  m_Center: {x: 0, y: 0.48, z: 0.32}
 --- !u!1 &2743196810678050963
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8327236365185591883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13, y: 1.369, z: 0.049}
+  m_LocalPosition: {x: 0.068, y: 1.369, z: 0.049}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
