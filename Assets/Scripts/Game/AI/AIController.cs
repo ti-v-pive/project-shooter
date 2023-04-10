@@ -19,12 +19,14 @@ namespace Game.AI {
         public float delayBeforeReturnToPatrolling = 2f;
         public float nextWaypointRadius = 30f;
         public float heightRaycastOffset = 2;
+        public BoxCollider patrollingArea;
         
         [Header("Weapon")]
         [SerializeField] private Transform _ignore;
         [SerializeField] private Weapon _weapon;
 
         private NavMeshAgent _navMeshAgent;
+        private Vector3 _initialWaypoint;
         private Vector3 _currentWaypoint;
         private Vector3 _lastSeenPlayerPosition;
         private AIState _currentState = AIState.None;
@@ -36,14 +38,16 @@ namespace Game.AI {
         private float DistanceToPlayer => Vector3.Distance(_transform.position, PlayerTransform.position);
 
         private void Awake() {
-            if (_weapon) {
-                _weapon.SetOwner(CreatureType.Bot);
-                _weapon.Ignore(_ignore);
+            if (!_weapon) {
+                return;
             }
+            _weapon.SetOwner(CreatureType.Bot);
+            _weapon.Ignore(_ignore);
         }
 
         private void Start() {
             _transform = transform;
+            _initialWaypoint = _transform.position;
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _disposable = MessageBroker.Default.Receive<GameLoadedSignal>().Subscribe(_ => OnGameLoaded());
         }
@@ -76,7 +80,7 @@ namespace Game.AI {
         }
 
         private void GoToNextPoint() {
-            var point = GetRandomPointAroundObject();
+            var point = patrollingArea ? GetRandomPointIPatrollingArea() : _initialWaypoint;
             _currentWaypoint = point;
             _navMeshAgent.SetDestination(point);
         }
@@ -173,10 +177,27 @@ namespace Game.AI {
         
         private Vector3 GetRandomPointAroundObject() {
             var randomDirection = Random.insideUnitSphere * nextWaypointRadius;
-            randomDirection += _transform.position;
+            randomDirection += _initialWaypoint;
             return NavMesh.SamplePosition(randomDirection, out var navMeshHit, nextWaypointRadius, NavMesh.AllAreas) 
                 ? navMeshHit.position 
                 : Vector3.zero;
+        }
+
+        private Vector3 GetRandomPointIPatrollingArea() {
+            var randomPoint = GetRandomPointInsideCollider(patrollingArea);
+            return NavMesh.SamplePosition(randomPoint, out var navMeshHit, nextWaypointRadius, NavMesh.AllAreas) 
+                ? navMeshHit.position 
+                : Vector3.zero;
+        }
+
+        private static Vector3 GetRandomPointInsideCollider(BoxCollider boxCollider) {
+            Vector3 extents = boxCollider.size / 2f;
+            Vector3 point = new Vector3(
+                Random.Range(-extents.x, extents.x),
+                Random.Range(-extents.y, extents.y),
+                Random.Range(-extents.z, extents.z)
+            ) + boxCollider.center;
+            return boxCollider.transform.TransformPoint(point);
         }
 
         private void OnDestroy() {
