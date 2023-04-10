@@ -154,7 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _spreadStep
-      value: 0.015
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7149713030489896974, guid: a4747fa0b1332cc4e951c320200b4fe8, type: 3}
       propertyPath: _shootCooldown
