@@ -10,18 +10,13 @@ using UniRx;
 
 namespace Game.UI.Leaderboard {
     public class LeaderboardWindow : MonoBehaviourSingleton<LeaderboardWindow> {
-        private enum Response {
-            None,
-            Accept,
-            Reject
-        }
-        
+
         [SerializeField] private List<LeaderPlayer> _players;
         [SerializeField] private LeaderPlayer _myStat;
         [SerializeField] private Button _buttonClose;
 
-        private Response _response;
-
+        private bool _closeButtonClicked;
+        
         protected override void Awake() {
             base.Awake();
             
@@ -33,7 +28,7 @@ namespace Game.UI.Leaderboard {
         }
 
         public async Task Show() {
-            _response = Response.None;
+            _closeButtonClicked = false;
             ShowInternal();
             var scores = await LeaderboardManager.GetTopScores();
             if (scores == null) {
@@ -45,26 +40,30 @@ namespace Game.UI.Leaderboard {
                 var player = _players[i];
                 player.Init(entry);
             }
-            var nickname = await UserManager.TryGetUsername();
-            var score = Main.Instance.Inventory.Exp.Count;
-            var position = GetPositionForNewScore(scores, score);
-            _myStat.Init(nickname, position, score);
-            await WaitForButton().ToObservable();
-            HideInternal();
-        }
-        
-        private IEnumerator WaitForButton() {
-            while (_response == Response.None) {
-                yield return null;
+            
+            var nickname = await UserManager.TryGetUsername(false);
+            if (!string.IsNullOrEmpty(nickname)) {
+                var score = Main.Instance.Inventory.Exp.Count;
+                var position = CalculatePositionForNewScore(scores, score);
+                _myStat.Init(nickname, position, score);
+            } else {
+                _myStat.InitAsEmpty();
             }
+            
+            await Observable.EveryUpdate()
+                .Where(_ => _closeButtonClicked)
+                .FirstOrDefault()
+                .ToTask();
+            
+            HideInternal();
         }
 
         private void ShowInternal() => gameObject.SetActive(true);
         private void HideInternal() => gameObject.SetActive(false);
 
-        private void OnCloseClick() => _response = Response.Reject;
+        private void OnCloseClick() => _closeButtonClicked = true;
 
-        public static int GetPositionForNewScore(List<PlayerLeaderboardEntry> entries, int newScore) {
+        private static int CalculatePositionForNewScore(List<PlayerLeaderboardEntry> entries, int newScore) {
             entries = entries.OrderBy(x => x.Position).ToList();
 
             int newPosition = 1;

@@ -7,31 +7,25 @@ using UnityEngine;
 namespace Game.UI.Leaderboard {
     public static class UserManager {
         
-        public static async Task<string> TryGetUsername() {
-            NetLoadingImage.SetActive(true);
+        public static async Task<string> TryGetUsername(bool showUsernameWindow = true) {
             var result = await PlayFabLogin.TryLogin();
             if (!result) {
                 return string.Empty;
             }
             
             var playerProfile = await TryGetUserProfile();
-
             if (!string.IsNullOrEmpty(playerProfile.DisplayName)) {
                 return playerProfile.DisplayName;
             }
-
-            var userNameFromWindow = await EnterUserIdWindow.Instance.Show();
-            if (string.IsNullOrEmpty(userNameFromWindow)) {
-                return userNameFromWindow;
+            if (!showUsernameWindow) {
+                return string.Empty;
             }
-
-            var displayNameRequest = new UpdateUserTitleDisplayNameRequest { DisplayName = userNameFromWindow };
-            PlayFabClientAPI.UpdateUserTitleDisplayName(displayNameRequest, OnUpdateUserTitleDisplayName, OnUpdateUserTitleDisplayNameFailure);
-            NetLoadingImage.SetActive(false);
+            
+            var userNameFromWindow = await EnterUserIdWindow.Instance.Show();
             return userNameFromWindow;
         }
 
-        public static async Task<PlayerProfileModel> TryGetUserProfile() {
+        private static async Task<PlayerProfileModel> TryGetUserProfile() {
             NetLoadingImage.SetActive(true);
             var profileResultType = CommandResultType.Process;
             GetPlayerProfileResult profileResult = null;
@@ -59,14 +53,6 @@ namespace Game.UI.Leaderboard {
 
             NetLoadingImage.SetActive(false);
             return profileResultType == CommandResultType.Fail ? null : profileResult.PlayerProfile;
-        }
-
-        private static void OnUpdateUserTitleDisplayName(UpdateUserTitleDisplayNameResult updateUserTitleDisplayNameResult) {
-            Debug.Log("UpdateUserTitleDisplayNameSuccess");
-        }
-        
-        private static void OnUpdateUserTitleDisplayNameFailure(PlayFabError error) {
-            Debug.LogError(error.GenerateErrorReport());
         }
     }
 }

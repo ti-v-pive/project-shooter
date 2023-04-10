@@ -88,8 +88,10 @@ public class Main : MonoBehaviourSingleton<Main> {
         _menuMusic.Play();
         
         SceneManager.UnloadSceneAsync(1);
-        await UserManager.TryGetUsername();
-        await LeaderboardManager.AddScore(Inventory.Exp.Count);
+        var name = await UserManager.TryGetUsername();
+        if (!string.IsNullOrEmpty(name)) {
+            await LeaderboardManager.AddScore(Inventory.Exp.Count);   
+        }
         await LeaderboardWindow.Instance.Show();
         LoadGame();
     }

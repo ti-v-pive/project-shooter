@@ -28,6 +28,12 @@ namespace Game.UI.Leaderboard {
             _nickname.text = nickname;
             _score.text = coinsCount.ToString();
         }
+        
+        public void InitAsEmpty() {
+            _number.text = "-";
+            _nickname.text = "-";
+            _score.text = "-";
+        }
 
         private void SetFlagImage(string countryCode) {
             if (string.IsNullOrEmpty(countryCode)) {

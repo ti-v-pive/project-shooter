@@ -68,7 +68,7 @@ namespace Game.UI.Leaderboard {
             GetLeaderboardResult result = null;
             
             void ResultCallback(GetLeaderboardResult getLeaderboardResult) {
-                Debug.Log("Score added successfully.");
+                Debug.Log("Scores loaded successfully.");
                 resultType = CommandResultType.Success;
                 result = getLeaderboardResult;
             }
