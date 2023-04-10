@@ -9,7 +9,7 @@ namespace Game.UI {
             if (!Main.IsGameStarted || !MainCamera) {
                 return;
             }
-            Vector3 screenPosition = _mainCamera.WorldToScreenPoint(PlayerAimPosition.Instance.transform.position);
+            Vector3 screenPosition = MainCamera.WorldToScreenPoint(PlayerAimPosition.Instance.transform.position);
             transform.position = screenPosition;
         }
     }

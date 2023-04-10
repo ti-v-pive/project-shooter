@@ -14,28 +14,25 @@ namespace Game {
             _isActive = true;
         }
 
-        private void Update()
-        {
+        private void Update() {
             if (!Main.IsGameStarted) {
                 return;
             }
             if (!_isActive) {
                 return;
             }
-            
-            if (timeRemaining > 0)
-            {
+
+            if (timeRemaining > 0) {
                 timeRemaining -= Time.deltaTime;
                 int minutes = Mathf.FloorToInt(timeRemaining / 60f);
                 int seconds = Mathf.FloorToInt(timeRemaining % 60f);
-                countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            }
-            else {
+                countdownText.text = $"{minutes:00}:{seconds:00}";
+            } else {
                 _isActive = false;
-                
+
                 timeRemaining = 0f;
                 countdownText.text = "00:00";
-                
+
                 Main.Instance.Lose();
             }
         }
