@@ -5,8 +5,6 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
@@ -51,10 +49,10 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
-# Builds
-*.apk
-*.unitypackage
+# Comment out the following lines to allow pushing build files
+# /[Bb]uilds/
+# *.apk
+# *.unitypackage
 
 # Crashlytics generated file
 crashlytics-build.properties
-
